@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode To-Do List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex justify-center items-center h-screen bg-gray-900 text-white">
+    <div class="bg-gray-800 p-6 rounded-lg w-80 shadow-lg">
+        <h1 class="text-center text-2xl mb-4">To-Do List</h1>
+        <div class="flex mb-4">
+            <input id="todo-input" type="text" placeholder="Add a new task..." 
+                class="flex-1 p-2 bg-gray-700 text-white rounded-l-md focus:outline-none">
+            <button id="add-task-btn" class="bg-purple-600 px-4 py-2 rounded-r-md hover:bg-purple-700">Add</button>
+        </div>
+        <ul id="todo-list" class="space-y-2"></ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+<style>
+    ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: #333333;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* strike through css */
+li.completed {
+  text-decoration: line-through;   
+  opacity: 0.7;
+}
+
+li button {
+  background-color: #d32f2f;
+  border: none;
+  padding: 5px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+li button:hover {
+  background-color: #b71c1c;
+}
+</style>
+</html>
