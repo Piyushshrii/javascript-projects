@@ -1,0 +1,18 @@
+{
+  "type": "module",
+  "scripts": {
+    "pretest": "rm -rf test-artifacts && mkdir test-artifacts",
+    "test": "jest --json --outputFile=test-artifacts/jest-results.json --coverage --coverageDirectory=test-artifacts/coverage"
+  },
+  "jest": {
+    "coverageReporters": [
+      "json",
+      "text",
+      "lcov"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}

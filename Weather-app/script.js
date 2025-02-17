@@ -9,6 +9,7 @@ async function fetchWeatherData(city) {
         }
         return await response.json();
     } catch (error) {
+        console.error("Error fetching weather data:", error);
         throw error;
     }
 }
@@ -17,7 +18,7 @@ function displayWeatherData(data) {
     const { name, main, weather } = data;
 
     document.getElementById("city-name").textContent = name;
-    document.getElementById("temperature").textContent = `Temperature: ${main.temp_max}°C`;
+    document.getElementById("temperature").textContent = `Temperature: ${main.temp}°C`; // Fixed temp key
     document.getElementById("description").textContent = `Weather: ${weather[0].description}`;
 
     document.getElementById("weather-info").classList.remove("hidden");
@@ -29,5 +30,19 @@ function showError() {
     document.getElementById("error-message").classList.remove("hidden");
 }
 
-// Export functions for testing
-module.exports = { fetchWeatherData, displayWeatherData, showError };
+// ✅ Attach event listener to button
+document.getElementById("get-weather-btn").addEventListener("click", async () => {
+    const city = document.getElementById("city-input").value.trim();
+
+    if (!city) {
+        alert("Please enter a city name!");
+        return;
+    }
+
+    try {
+        const weatherData = await fetchWeatherData(city);
+        displayWeatherData(weatherData);
+    } catch (error) {
+        showError();
+    }
+});
