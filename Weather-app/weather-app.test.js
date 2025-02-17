@@ -4,7 +4,6 @@
 
 import { fetchWeatherData, displayWeatherData, showError } from "./script";
 
-
 describe("Weather App", () => {
     beforeEach(() => {
         // Set up basic DOM structure
