@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { fetchWeatherData, displayWeatherData, showError } from "./script";
+const { fetchWeatherData, displayWeatherData, showError } = require("./script"); // Fix import
 
 describe("Weather App", () => {
     beforeEach(() => {
@@ -25,7 +25,7 @@ describe("Weather App", () => {
                 ok: true,
                 json: () => Promise.resolve({
                     name: "London",
-                    main: { temp_max: 25 },
+                    main: { temp: 25 },  // ✅ Use `temp` instead of `temp_max`
                     weather: [{ description: "clear sky" }]
                 })
             })
@@ -34,7 +34,7 @@ describe("Weather App", () => {
         const data = await fetchWeatherData("London");
 
         expect(data.name).toBe("London");
-        expect(data.main.temp_max).toBe(25);
+        expect(data.main.temp).toBe(25);  // ✅ Use `temp`
         expect(data.weather[0].description).toBe("clear sky");
     });
 
@@ -51,14 +51,14 @@ describe("Weather App", () => {
     test("displayWeatherData updates the DOM correctly", () => {
         const weatherData = {
             name: "London",
-            main: { temp_max: 20 },
+            main: { temp: 20 },  // ✅ Use `temp`
             weather: [{ description: "cloudy" }]
         };
 
         displayWeatherData(weatherData);
 
         expect(document.getElementById("city-name").textContent).toBe("London");
-        expect(document.getElementById("temperature").textContent).toBe("Temperature: 20°C");
+        expect(document.getElementById("temperature").textContent).toBe("Temperature: 20°C"); // ✅ Match UI update
         expect(document.getElementById("description").textContent).toBe("Weather: cloudy");
         expect(document.getElementById("weather-info").classList.contains("hidden")).toBe(false);
         expect(document.getElementById("error-message").classList.contains("hidden")).toBe(true);
