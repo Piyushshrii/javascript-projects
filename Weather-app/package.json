@@ -1,19 +1,23 @@
 {
   "type": "module",
-  "scripts": 
-  {
+  "scripts": {
     "pretest": "rm -rf test-artifacts && mkdir test-artifacts",
-    "test": "jest --json --outputFile=test-artifacts/jest-results.json --coverage --coverageDirectory=test-artifacts/coverage"
+    "test": "jest --ci --json --outputFile=test-artifacts/jest-results.json --coverage --coverageDirectory=test-artifacts/coverage --reporters=default --reporters=jest-junit"
   },
   "jest": {
     "coverageReporters": [
       "json",
       "text",
       "lcov"
+    ],
+    "reporters": [
+      "default",
+      ["jest-junit", { "outputDirectory": "test-artifacts", "outputName": "results.xml" }]
     ]
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0"
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-junit": "^16.0.0"
   }
 }
