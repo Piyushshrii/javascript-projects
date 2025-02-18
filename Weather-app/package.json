@@ -2,7 +2,7 @@
   "type": "module",
   "scripts": {
     "pretest": "rm -rf test-results && mkdir -p test-results",
-    "test": "jest --ci --coverage --coverageDirectory=test-results/coverage --reporters=default --reporters=jest-junit"
+    "test": "JEST_JUNIT_OUTPUT_DIR=./test-results JEST_JUNIT_OUTPUT_NAME=results.xml jest --ci --coverage --coverageDirectory=test-results/coverage --reporters=default --reporters=jest-junit"
   },
   "jest": {
     "coverageReporters": ["json", "text", "lcov"],
