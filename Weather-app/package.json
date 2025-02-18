@@ -1,6 +1,7 @@
 {
   "type": "module",
-  "scripts": {
+  "scripts": 
+  {
     "pretest": "rm -rf test-artifacts && mkdir test-artifacts",
     "test": "jest --json --outputFile=test-artifacts/jest-results.json --coverage --coverageDirectory=test-artifacts/coverage"
   },
